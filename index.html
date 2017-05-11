@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        div {
+            //border: 1px solid #c3c3c3;
+            align-content: center;
+            text-align: center;
+            padding: 0px;
+        }
+        
+        section {
+            border: 1px solid #FFFFFF; //#c3c3c3 for debugging
+            height: 80px;
+            padding: 0px;
+        }
+        
+        p {
+            font-family: sans-serif;
+            font-size: 24px;
+            text-align: center;
+        }
+        
+        hr {
+            color: #E6E6E6; //Light grey
+            border-width: 1px>
+        }
+        
+        .button1 {
+            border: 0px;
+            color: white;
+            padding: 0px 0px;
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+        }
+        
+        .button1:hover {
+            box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24),0 8px 25px 0 rgba(0,0,0,0.19);
+        }
+        
+        .button2 {
+            background-color: #003390; //Blue
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 250px;
+        }
+        
+        input {
+            font-size: 16px;
+            width: 250px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope, $http) {
+            $http.get('qa').then(function(response) {
+                var s = response.data.toString();
+                sQues = s.slice(0, s.indexOf(':'));
+                sAns = s.slice(s.indexOf(':') + 1);
+                sAns1 = sAns.slice(0, sAns.indexOf(':'));
+                sAns2 = sAns.slice(sAns.indexOf(':') + 1);
+                
+                $scope.myQuestion = sQues;
+                
+                $scope.P = function() {
+                    if (sAns1 == 'P') $scope.myImage = 'img/ok.png';
+                    else $scope.myImage = 'img/ko.png';
+                    $scope.myAnswer = sAns2;
+                };
+
+                $scope.M = function() {
+                    if (sAns1 == 'M') $scope.myImage = 'img/ok.png';
+                    else $scope.myImage = 'img/ko.png';
+                    $scope.myAnswer = sAns2;
+                };
+                
+                $scope.V = function() {
+                    if (sAns1 == 'V') $scope.myImage = 'img/ok.png';
+                    else $scope.myImage = 'img/ko.png';
+                    $scope.myAnswer = sAns2;
+                };
+                
+                $scope.B = function() {
+                    if (sAns1 == 'B') $scope.myImage = 'img/ok.png';
+                    else $scope.myImage = 'img/ko.png';
+                    $scope.myAnswer = sAns2;
+                };
+                
+                $scope.G = function() {
+                    if (sAns1 == 'G') $scope.myImage = 'img/ok.png';
+                    else $scope.myImage = 'img/ko.png';
+                    $scope.myAnswer = sAns2;
+                };
+
+                $scope.R = function() {
+                    if (sAns1 == 'R') $scope.myImage = 'img/ok.png';
+                    else $scope.myImage = 'img/ko.png';
+                    $scope.myAnswer = sAns2;
+                };
+                
+                $scope.Z = function() {
+                    if (sAns1 == 'Z') $scope.myImage = 'img/ok.png';
+                    else $scope.myImage = 'img/ko.png';
+                    $scope.myAnswer = sAns2;
+                };
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <p>On vas envàs?  &nbsp <img height="40px" src="img/on.jpg"></p>
+    <hr>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <p>{{myQuestion}}</p>
+        <button class="button1" ng-click="P()"><img src="img/P.jpg"></button>
+        <button class="button1" ng-click="M()"><img src="img/M.jpg"></button>
+        <button class="button1" ng-click="V()"><img src="img/V.jpg"></button>
+        <button class="button1" ng-click="B()"><img src="img/B.jpg"></button>
+        <button class="button1" ng-click="G()"><img src="img/G.jpg"></button>
+        <button class="button1" ng-click="R()"><img src="img/R.jpg"></button>
+        <button class="button1" ng-click="Z()"><img src="img/Z.jpg"></button>
+        <p> <img height="20px" ng-src={{myImage}}> {{myAnswer}}</p>
+        <hr>
+        <button class="button2" onClick="window.location.reload();">Una altra</button>
+    </div>
+</body>
+
+</html>

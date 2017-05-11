@@ -1,0 +1,5 @@
+---
+applications:
+- name:    recicla
+  host:    recicla
+  memory:  128M
